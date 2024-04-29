@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Palette Colors */
+
+  --white: hsl(180, 0%, 100%);
+  --primary: hsl(204.17, 87.55%, 52.75%);
+  --secondary: hsl(250, 31%, 19%);
+  --heading-light: hsl(210, 33%, 24%);
+  --heading-dark: rgb(255, 255, 255);
+  --text-light: rgb(66, 84, 102);
+  --text-dark: rgb(242, 242, 242);
+  --icon-1-light: hsl(215.676, 15%, 52%);
+  --icon-1-dark: hsl(204, 46%, 98%);
+  --border-light-1: hsl(0, 0%, 86%);
+  --border-dark-1: hsl(205.71, 15.79%, 26.08%);
+
+  --dark-1-50: hsl(225, 15%, 95%);
+  --dark-1-75: hsl(230, 12%, 91%);
+  --dark-1-100: hsl(229, 14%, 85%);
+  --dark-1-200: hsl(233, 14%, 75%);
+  --dark-1-300: hsl(233, 14%, 65%);
+  --dark-1-400: hsl(233, 14%, 55%);
+  --dark-1-500: hsl(234, 14%, 45%);
+  --dark-1-600: hsl(235, 14%, 35%);
+  --dark-1-700: hsl(233, 14%, 25%);
+  --dark-1-800: hsl(235, 14%, 15%);
+  --dark-1-900: hsl(232.5, 14.81%, 10.59%);
+
+  --dark-2-25: hsl(210, 33%, 95%);
+  --dark-2-50: hsl(210, 34%, 86%);
+  --dark-2-75: hsl(210, 34%, 77%);
+  --dark-2-100: hsl(210, 35%, 68%);
+  --dark-2-200: hsl(210, 35%, 59%);
+  --dark-2-300: hsl(210, 34%, 50%);
+  --dark-2-400: hsl(210, 35%, 41%);
+  --dark-2-500: hsl(210, 35%, 32%);
+  --dark-2-600: hsl(210, 34%, 23%);
+  --dark-2-650: hsl(213, 25%, 18.69%);
+  --dark-2-700: hsl(210, 34%, 14%);
+  --dark-2-800: hsl(207, 18%, 10%);
+  --dark-2-900: hsl(210, 33%, 5%);
+
+  /* Color Variables */
+
+  --text: var(--text-light);
+  --heading: var(--heading-light);
+  --border: var(--border-light-1);
+  --icon: var(--icon-1-light);
+
+  --pm-bg: var(--white);
+  --sec-bg: var(--dark-1-50);
+
+  --menu-hover: var(--white);
+  --menu-active: var(--white);
+  --sub-menu-active: var(--dark-2-700);
+  --menu-active-icon: var(--dark-2-800);
+  --main-menu-bg: var(--dark-2-700);
+
+  [theme="dark"] {
+    --text: var(--text-dark);
+    --heading: var(--heading-light);
+
+    --border: var(--border-dark-1);
+    --icon: var(--icon-1-dark);
+
+    --pm-bg: var(--dark-2-700);
+    --sec-bg: var(--dark-2-650);
+
+    --menu-hover: var(--dark-2-800);
+    --menu-active: var(--dark-2-800);
+    --sub-menu-active: var(--white);
+    --menu-active-icon: var(--white);
+    --main-menu-bg: var(--dark-2-700);
+  }
+}
+
+/* Basic CSS Setup */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: "Inter", sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.004);
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2.375rem;
+  font-weight: 700;
+  line-height: 3.06rem;
+
+  &.display {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 6.25rem;
+  }
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 2.38rem;
+
+  &.display {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 5.75rem;
+  }
+}
+
+h3 {
+  color: var(--heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.68rem;
+
+  &.display {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 4.84rem;
+  }
+}
+
+h4 {
+  color: var(--heading);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.36rem;
+
+  &.display {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 4.23rem;
+  }
+}
+
+h5 {
+  color: var(--heading);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.56rem;
+
+  &.display {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.63rem;
+  }
+}
+
+h6 {
+  color: var(--heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+
+  &.display {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3.025rem;
+  }
+}
+
+p {
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43rem;
+
+  &.extralarge {
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 2.38rem;
+  }
+
+  &.large {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.7rem;
+  }
+
+  &.small {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.43rem;
+  }
+
+  &.extrasmall {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+  }
+
+  &.subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.05rem;
+  }
+
+  &.caption {
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 0.9rem;
+  }
+}
+
+a {
+  color: var(--link);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.05rem;
+}
