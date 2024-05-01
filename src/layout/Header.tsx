@@ -6,7 +6,7 @@ const Header: React.FC<Props> = ({ actions, heading }) => {
   return (
     <header
       aria-label="Header"
-      className="flex h-[4rem] flex-col border-b-[0.0625rem] border-solid border-b-[var(--border)] bg-[var(--pm-bg)]">
+      className="flex h-[4rem] flex-col border-b-[0.0625rem] border-solid border-b-[var(--border)] bg-[var(--pm-bg)] max-sm:hidden">
       <div className="flex flex-1 flex-col px-7 py-1 max-md:px-2">
         <div aria-label="Header content" className="flex flex-1 items-center">
           <div className="flex items-center gap-2 overflow-hidden max-md:flex-1 md:flex-[50%]">
