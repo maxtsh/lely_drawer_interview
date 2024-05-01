@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1714579323522" clover="3.2.0">
-  <project timestamp="1714579323522" name="All files">
-    <metrics statements="1254" coveredstatements="795" conditionals="80" coveredconditionals="67" methods="57" coveredmethods="36" elements="1391" coveredelements="898" complexity="0" loc="1254" ncloc="1254" packages="15" files="41" classes="41"/>
+<coverage generated="1714581226730" clover="3.2.0">
+  <project timestamp="1714581226730" name="All files">
+    <metrics statements="1210" coveredstatements="766" conditionals="77" coveredconditionals="64" methods="56" coveredmethods="35" elements="1343" coveredelements="865" complexity="0" loc="1210" ncloc="1210" packages="14" files="38" classes="38"/>
     <package name="lely_test">
       <metrics statements="35" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="postcss.config.cjs" path="F:\Projects\interviews\lely_test\postcss.config.cjs">
@@ -957,60 +957,6 @@
         <line num="55" count="0" type="stmt"/>
       </file>
     </package>
-    <package name="lely_test.src.components.Breadcrumbs">
-      <metrics statements="42" coveredstatements="30" conditionals="5" coveredconditionals="4" methods="2" coveredmethods="2"/>
-      <file name="Breadcrumbs.functions.ts" path="F:\Projects\interviews\lely_test\src\components\Breadcrumbs\Breadcrumbs.functions.ts">
-        <metrics statements="8" coveredstatements="6" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="4" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="3" type="stmt"/>
-        <line num="8" count="3" type="stmt"/>
-      </file>
-      <file name="Breadcrumbs.tsx" path="F:\Projects\interviews\lely_test\src\components\Breadcrumbs\Breadcrumbs.tsx">
-        <metrics statements="33" coveredstatements="23" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="14" count="4" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="4" type="stmt"/>
-        <line num="25" count="4" type="stmt"/>
-        <line num="26" count="4" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="4" type="stmt"/>
-        <line num="29" count="4" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
-        <line num="31" count="4" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-      </file>
-      <file name="index.ts" path="F:\Projects\interviews\lely_test\src\components\Breadcrumbs\index.ts">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-      </file>
-    </package>
     <package name="lely_test.src.components.ErrorBoundary">
       <metrics statements="54" coveredstatements="52" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="5"/>
       <file name="ErrorBoundary.tsx" path="F:\Projects\interviews\lely_test\src\components\ErrorBoundary\ErrorBoundary.tsx">
@@ -1075,15 +1021,15 @@
       </file>
     </package>
     <package name="lely_test.src.layout">
-      <metrics statements="138" coveredstatements="137" conditionals="9" coveredconditionals="8" methods="6" coveredmethods="4"/>
+      <metrics statements="136" coveredstatements="135" conditionals="9" coveredconditionals="8" methods="6" coveredmethods="4"/>
       <file name="Header.tsx" path="F:\Projects\interviews\lely_test\src\layout\Header.tsx">
-        <metrics statements="30" coveredstatements="30" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="28" coveredstatements="28" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="3" type="stmt"/>
         <line num="7" count="3" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
@@ -1091,9 +1037,9 @@
         <line num="11" count="3" type="stmt"/>
         <line num="12" count="3" type="stmt"/>
         <line num="13" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
+        <line num="14" count="3" type="cond" truecount="1" falsecount="0"/>
         <line num="15" count="3" type="stmt"/>
-        <line num="16" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="16" count="3" type="stmt"/>
         <line num="17" count="3" type="stmt"/>
         <line num="18" count="3" type="stmt"/>
         <line num="19" count="3" type="stmt"/>
@@ -1104,10 +1050,8 @@
         <line num="24" count="3" type="stmt"/>
         <line num="25" count="3" type="stmt"/>
         <line num="26" count="3" type="stmt"/>
-        <line num="27" count="3" type="stmt"/>
-        <line num="28" count="3" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
       </file>
       <file name="Layout.tsx" path="F:\Projects\interviews\lely_test\src\layout\Layout.tsx">
         <metrics statements="17" coveredstatements="17" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
@@ -1278,19 +1222,19 @@
       </file>
     </package>
     <package name="lely_test.src.pages.Notfound">
-      <metrics statements="13" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="13" coveredstatements="13" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="Notfound.tsx" path="F:\Projects\interviews\lely_test\src\pages\Notfound\Notfound.tsx">
-        <metrics statements="12" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="12" coveredstatements="12" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
+        <line num="3" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
       </file>
@@ -1404,13 +1348,13 @@
       </file>
     </package>
     <package name="lely_test.src.utils">
-      <metrics statements="9" coveredstatements="9" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <metrics statements="9" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="2"/>
       <file name="index.ts" path="F:\Projects\interviews\lely_test\src\utils\index.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
+        <metrics statements="4" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
       </file>
       <file name="regExp.ts" path="F:\Projects\interviews\lely_test\src\utils\regExp.ts">
         <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
