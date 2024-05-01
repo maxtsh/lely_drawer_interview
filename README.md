@@ -47,4 +47,3 @@ To run coverage
 - npm run coverage
 
 Coverage is 80%+ for branch and 60+ for functions
-
