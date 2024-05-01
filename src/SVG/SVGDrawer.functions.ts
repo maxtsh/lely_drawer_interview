@@ -79,7 +79,7 @@ export const distance = (start: Point2D, end: Point2D) => {
   return result;
 };
 
-const onLine = (
+export const isOnTheLine = (
   start: Point2D,
   end: Point2D,
   clickPoint: Point2D,
@@ -108,7 +108,7 @@ export const nearPoint = (
 export const locateClickedPosition = (clickPoint: Point2D, node: NodeType) => {
   const { start, end } = node.position;
 
-  const on = onLine(start, end, clickPoint);
+  const on = isOnTheLine(start, end, clickPoint);
   const nearStart = nearPoint(clickPoint, start, lineClickPositions.start);
   const nearEnd = nearPoint(clickPoint, end, lineClickPositions.end);
 

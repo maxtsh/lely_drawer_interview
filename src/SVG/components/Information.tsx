@@ -7,16 +7,22 @@ const Information: React.FC = () => {
 
   if (!selectedNode) return null;
 
-  console.log("render");
+  const classNames = {
+    wrapper:
+      "border-standard absolute bottom-2 left-[50%] z-20 flex w-full max-w-[25rem] translate-x-[-50%] flex-col gap-1 rounded-small bg-[var(--sec-bg)]",
+    ID: "flex items-center bg-gray-200 p-2",
+    length: "flex items-center justify-between p-2",
+    angle: "flex items-center justify-between p-2",
+  };
 
   return (
-    <div className="border-standard absolute bottom-2 left-[50%] z-20 flex w-full max-w-[25rem] translate-x-[-50%] flex-col gap-1 rounded-small bg-[var(--sec-bg)]">
-      <div className="flex items-center bg-gray-200 p-2">
+    <div className={classNames.wrapper}>
+      <div className={classNames.ID}>
         <h6>
           {selectedNode.category} ID: {selectedNode.id}
         </h6>
       </div>
-      <div className="flex items-center justify-between p-2">
+      <div className={classNames.length}>
         <h6>Length:</h6>
         <p>
           {Math.trunc(
@@ -25,7 +31,7 @@ const Information: React.FC = () => {
           cm
         </p>
       </div>
-      <div className="flex items-center justify-between p-2">
+      <div className={classNames.angle}>
         <h6>Angle:</h6>
         <p>
           {Math.trunc(
@@ -38,4 +44,6 @@ const Information: React.FC = () => {
   );
 };
 
-export default memo(Information);
+const Memoized = memo(Information);
+
+export default Memoized;

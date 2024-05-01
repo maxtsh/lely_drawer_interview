@@ -48,10 +48,9 @@ const useSVG = <T extends HTMLElement = HTMLDivElement>(
     };
   }, [SVGContainer, onLoad]);
 
-  // Paint Stored Elements
+  // Track Painting Stored Elements
   useEffect(() => {
     nodes.forEach((line) => SVGContainer.add(line.element));
-
     return () => {
       SVGContainer.clear();
     };

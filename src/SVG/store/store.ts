@@ -28,7 +28,7 @@ type StoreType = {
   };
 };
 
-const initialStates: StoreType["states"] = {
+export const initialStates: StoreType["states"] = {
   nodes: [],
   SVGContainer: SVG(),
   selectedNode: null,

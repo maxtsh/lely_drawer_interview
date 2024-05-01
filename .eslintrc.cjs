@@ -71,6 +71,8 @@ module.exports = {
           "**/*.test.ts",
           "**/*.test.tsx",
           "**/test/*",
+          "**/mocks/*",
+          "**/__mocks__/*",
           "**/tests/*",
           "./src/tests/*",
           "vite.config.ts",
@@ -108,3 +110,4 @@ module.exports = {
     semi: ["error", "always"],
   },
 };
+

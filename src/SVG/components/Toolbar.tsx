@@ -69,4 +69,6 @@ const Toolbar: React.FC = () => {
   );
 };
 
-export default memo(Toolbar);
+const Memozied = memo(Toolbar);
+
+export default Memozied;

@@ -9,7 +9,7 @@ import "@/assets/fonts/inter/stylesheet.css";
 const router = createBrowserRouter(
   [
     {
-      path: "",
+      path: "/",
       element: <Providers />,
       children: [
         {
