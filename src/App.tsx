@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Routes from "@/Routes";
+import Routes from "@/routes";
 import Layout from "@/layout";
 import Providers from "./Providers";
 import Notfound from "./pages/Notfound";

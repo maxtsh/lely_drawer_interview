@@ -37,8 +37,8 @@ class ErrorBoundary extends Component<Props, State> {
   override render() {
     if (this.state.hasError) {
       return (
-        <div>
-          <h3 className="error-title">Ooooooppps...!</h3>
+        <div className="flex flex-1 flex-col items-center justify-center gap-1">
+          <h2 className="error-title">Ooooooppps...!</h2>
           <p className="error-text">
             {this?.state.errorMessage || "Something must have broken!"}
           </p>

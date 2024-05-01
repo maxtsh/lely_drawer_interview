@@ -15,7 +15,7 @@ const Page: React.FC<React.PropsWithChildren<Props>> = ({
   return (
     <div
       aria-label="Page content"
-      className="flex flex-1 flex-col overflow-y-auto">
+      className="relative flex flex-1 flex-col overflow-y-auto">
       <Header {...headerProps} />
       <div
         className={cn(

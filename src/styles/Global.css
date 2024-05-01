@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .border-standard {
+    border: 0.0625rem solid var(--border);
+  }
+}
+
 :root {
   /* Palette Colors */
 
@@ -58,27 +64,9 @@
   --sub-menu-active: var(--dark-2-700);
   --menu-active-icon: var(--dark-2-800);
   --main-menu-bg: var(--dark-2-700);
-
-  [theme="dark"] {
-    --text: var(--text-dark);
-    --heading: var(--heading-light);
-
-    --border: var(--border-dark-1);
-    --icon: var(--icon-1-dark);
-
-    --pm-bg: var(--dark-2-700);
-    --sec-bg: var(--dark-2-650);
-
-    --menu-hover: var(--dark-2-800);
-    --menu-active: var(--dark-2-800);
-    --sub-menu-active: var(--white);
-    --menu-active-icon: var(--white);
-    --main-menu-bg: var(--dark-2-700);
-  }
 }
 
 /* Basic CSS Setup */
-
 * {
   box-sizing: border-box;
   margin: 0;

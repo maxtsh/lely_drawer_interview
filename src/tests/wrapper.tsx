@@ -1,7 +1,7 @@
 import { MemoryRouter } from "react-router-dom";
 
-function RouterWrapper({ children }: React.PropsWithChildren) {
+const RouterWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <MemoryRouter>{children}</MemoryRouter>;
-}
+};
 
 export default RouterWrapper;

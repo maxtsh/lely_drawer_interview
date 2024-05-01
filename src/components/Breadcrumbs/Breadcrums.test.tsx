@@ -7,7 +7,7 @@ test("Breadcrumbs renders correctly", () => {
   render(
     <RouterWrapper>
       <Breadcrumbs />
-    </RouterWrapper>
+    </RouterWrapper>,
   );
 
   const breadcrumbs = screen.getByLabelText(/breadcrumbs/i);

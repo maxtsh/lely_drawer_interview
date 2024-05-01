@@ -1,24 +1,20 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Image, cn } from "@nextui-org/react";
 import { BiHome } from "react-icons/bi";
 
 const navigations = [{ id: "1", path: "/", icon: BiHome }];
 
 const Sidebar: React.FC = () => {
-  const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const navigate = useNavigate();
+  const routerLocation = useLocation();
 
-  const handleSelectMenu = (id: string, path?: string) => {
-    setSelectedMenu(id);
-    if (path) navigate(path);
-  };
+  const handleSelectMenu = (path: string) => navigate(path);
 
   return (
     <aside
       aria-label="Primary sidebar"
       className="relative flex w-[4rem] select-none flex-col bg-[var(--main-menu-bg)] max-sm:hidden">
-      <div className="sidebar flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col">
         <div className="flex h-16 items-center justify-center border-b-[0.0625rem] border-solid border-b-[var(--border-dark-2)] p-1">
           <Image src="/images/Lely_Logo.png" width="100%" height="auto" />
         </div>
@@ -31,10 +27,10 @@ const Sidebar: React.FC = () => {
                 <li
                   key={nav.id}
                   aria-label={nav.id}
-                  onClick={() => handleSelectMenu(nav.id, nav.path)}
+                  onClick={() => handleSelectMenu(nav.path)}
                   className={cn(
                     "group relative flex cursor-pointer items-center rounded-bl-small rounded-br-[0] rounded-tl-small rounded-tr-[0]",
-                    nav.id === selectedMenu
+                    nav.path === routerLocation.pathname
                       ? "active rounded-small bg-[var(--menu-active)]"
                       : "text-[var(--white)] hover:mx-1 hover:rounded-small hover:bg-[var(--menu-hover)]",
                   )}>
