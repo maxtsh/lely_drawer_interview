@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, renderHook, waitFor } from "@testing-library/react";
+import { SVG } from "@svgdotjs/svg.js";
 import {
   angle,
   distance,
@@ -6,9 +7,9 @@ import {
   nearPoint,
   locateClickedPosition,
 } from "./SVGDrawer.functions";
+import useSVG from "./useSVG";
 import SVGDrawer from "./SVGDrawer";
 import { lineClickPositions, shapes } from "./SVGDrawer.constants";
-import { SVG } from "@svgdotjs/svg.js";
 
 const svgContainer = SVG().line();
 
@@ -18,11 +19,14 @@ afterEach(() => {
 
 describe("SVGDrawer component", () => {
   test("SVG Drawer renders correctly", () => {
-    render(<SVGDrawer />);
+    const initilizerFn = vi.fn();
+
+    render(<SVGDrawer onLoad={initilizerFn} />);
 
     const canvas = screen.getByLabelText(/canvas/i);
 
     expect(canvas).toBeInTheDocument();
+    expect(initilizerFn).toHaveBeenCalledOnce();
   });
 });
 
@@ -119,5 +123,15 @@ describe("SVG Drawer utilities", () => {
     expect(result1).toBeNull();
     expect(result2).toBe(lineClickPositions.start);
     expect(result3).toBe(lineClickPositions.end);
+  });
+});
+
+describe("SVG Drawer hook", () => {
+  test("SVG drawer hook works correctly", async () => {
+    const { result } = renderHook(() => useSVG(() => null));
+
+    await waitFor(() => {
+      expect(result.current.wrapperRef).toBeTruthy();
+    });
   });
 });
