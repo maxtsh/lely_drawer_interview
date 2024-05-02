@@ -1,5 +1,3 @@
-import type { StrokeData } from "@svgdotjs/svg.js";
-
 export const toolModes = {
   none: "none",
   line: "line",
@@ -17,12 +15,21 @@ export const shapes = {
   line: "Line",
 } as const;
 
-export const lineStyles: {
-  css: Partial<CSSStyleDeclaration>;
-  stroke: StrokeData;
-} = {
-  css: {},
-  stroke: { color: "var(--primary)", width: 3, linecap: "round" },
+export const lineStyles = {
+  default: {
+    css: {},
+    stroke: { color: "#000", width: 3, linecap: "round" },
+  },
+  selected: {
+    css: {},
+    stroke: { color: "var(--primary)", width: 3, linecap: "round" },
+  },
+};
+
+export const markerStyles = {
+  css: {
+    color: "var(--primary)",
+  },
 };
 
 export const lineClickPositions = {

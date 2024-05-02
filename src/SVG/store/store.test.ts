@@ -16,6 +16,7 @@ test("Use SVG store hook should work correctly", async () => {
       selected: false,
       category: shapes.line,
       element: svgContainer,
+      connections: { start: null, end: null },
       position: { start: { x: 1, y: 1 }, end: { x: 2, y: 2 } },
     },
   ];

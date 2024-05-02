@@ -9,7 +9,7 @@ import {
 } from "../SVGDrawer.types";
 import { SVG, type Svg } from "@svgdotjs/svg.js";
 
-type StoreType = {
+export type StoreType = {
   states: {
     SVGContainer: Svg;
     toolMode: ToolMode;
@@ -23,7 +23,8 @@ type StoreType = {
     ) => void;
     setToolMode: (newMode: ToolMode) => void;
     setActionMode: (newActionMode: ActionMode) => void;
-    setSelectedNode: (newSelectedNode: SelectedNode) => void;
+    setSelectedNode: (newSelectedNode: SelectedNode | null) => void;
+    getStates: () => StoreType["states"];
     clear: () => void;
   };
 };
@@ -37,14 +38,10 @@ export const initialStates: StoreType["states"] = {
 };
 
 const store = createWithEqualityFn<StoreType>(
-  (set) => ({
+  (set, get) => ({
     states: initialStates,
     actions: {
-      setNodes: (
-        newState:
-          | Array<NodeType>
-          | ((prev: Array<NodeType>) => Array<NodeType>),
-      ) => {
+      setNodes: (newState) => {
         if (typeof newState === "function") {
           set((store) => ({
             ...store,
@@ -57,21 +54,22 @@ const store = createWithEqualityFn<StoreType>(
           }));
         }
       },
-      setToolMode: (newToolMode: ToolMode) =>
+      setToolMode: (newToolMode) =>
         set((store) => ({
           ...store,
           states: { ...store.states, toolMode: newToolMode },
         })),
-      setActionMode: (newActionMode: ActionMode) =>
+      setActionMode: (newActionMode) =>
         set((store) => ({
           ...store,
           states: { ...store.states, actionMode: newActionMode },
         })),
-      setSelectedNode: (newSelectedNode: SelectedNode) =>
+      setSelectedNode: (newSelectedNode) =>
         set((store) => ({
           ...store,
           states: { ...store.states, selectedNode: newSelectedNode },
         })),
+      getStates: () => get().states,
       clear: () => set((store) => ({ ...store, states: initialStates })),
     },
   }),

@@ -8,8 +8,8 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime",
-    "plugin:@typescript-eslint/recommended",
     "plugin:testing-library/react",
+    "plugin:@typescript-eslint/recommended",
     "prettier",
   ],
   ignorePatterns: ["node_modules", "coverage", "dist", ".eslintrc.cjs"],
@@ -110,4 +110,3 @@ module.exports = {
     semi: ["error", "always"],
   },
 };
-

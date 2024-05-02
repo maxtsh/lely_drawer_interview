@@ -20,13 +20,9 @@ describe("SVGDrawer component", () => {
   test("SVG Drawer renders correctly", () => {
     render(<SVGDrawer />);
 
-    const drawBtn = screen.getByLabelText(/draw/i);
-    const selectBtn = screen.getByLabelText(/draw/i);
-    const cleanBtn = screen.getByLabelText(/draw/i);
+    const canvas = screen.getByLabelText(/canvas/i);
 
-    expect(drawBtn).toBeInTheDocument();
-    expect(selectBtn).toBeInTheDocument();
-    expect(cleanBtn).toBeInTheDocument();
+    expect(canvas).toBeInTheDocument();
   });
 });
 
@@ -93,6 +89,7 @@ describe("SVG Drawer utilities", () => {
         selected: false,
         category: shapes.line,
         element: svgContainer,
+        connections: { start: null, end: null },
         position: { start: { x: 1, y: 12 }, end: { x: 2, y: 15 } },
       },
     );
@@ -103,6 +100,7 @@ describe("SVG Drawer utilities", () => {
         selected: false,
         category: shapes.line,
         element: svgContainer,
+        connections: { start: null, end: null },
         position: { start: { x: 1, y: 1 }, end: { x: 4, y: 5 } },
       },
     );
@@ -113,6 +111,7 @@ describe("SVG Drawer utilities", () => {
         selected: false,
         category: shapes.line,
         element: svgContainer,
+        connections: { start: null, end: null },
         position: { start: { x: 3, y: 11 }, end: { x: 8, y: 13 } },
       },
     );
