@@ -1,18 +1,24 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import useStore from "./store";
 import {
+  moving,
+  drawing,
+  resizing,
+  selecting,
   createLine,
+  createMarkers,
   getExactCoordinates,
-  resizeLineCoordinates,
   getElementOnClickedPosition,
 } from "./SVGDrawer.functions";
-import { toolModes, actions, lineClickPositions } from "./SVGDrawer.constants";
+import { actions, toolModes, lineStyles } from "./SVGDrawer.constants";
+import type { G } from "@svgdotjs/svg.js";
 import type { Props } from "./SVGDrawer.types";
 
 const useSVG = <T extends HTMLElement = HTMLDivElement>(
   onLoad: Props["onLoad"],
 ) => {
   const wrapperRef = useRef<T>(null);
+  const [group, setGroup] = useState<G | null>(null);
   const [
     nodes,
     toolMode,
@@ -40,6 +46,8 @@ const useSVG = <T extends HTMLElement = HTMLDivElement>(
         .size("100%", "100%")
         .attr({ style: "z-index: 5;" });
 
+      setGroup(SVGContainer.group().id("general-group"));
+
       if (onLoad) onLoad(SVGContainer, wrapperRef.current);
     }
 
@@ -50,11 +58,26 @@ const useSVG = <T extends HTMLElement = HTMLDivElement>(
 
   // Track Painting Stored Elements
   useEffect(() => {
-    nodes.forEach((line) => SVGContainer.add(line.element));
+    nodes.forEach((node) => {
+      SVGContainer.add(node.element);
+
+      if (node.selected) {
+        node.element.stroke(lineStyles.selected.stroke.color);
+        createMarkers(group, node);
+      }
+
+      if (!node.selected) {
+        node.element.stroke(lineStyles.default.stroke.color);
+      }
+    });
+
     return () => {
-      SVGContainer.clear();
+      nodes.forEach((node) => {
+        node.element?.defs()?.node?.remove();
+        node.element.remove();
+      });
     };
-  }, [nodes, SVGContainer]);
+  }, [nodes, SVGContainer, group]);
 
   const handleMouseDown = (e: React.MouseEvent<T, MouseEvent>) => {
     const clickPoint = getExactCoordinates(
@@ -63,78 +86,22 @@ const useSVG = <T extends HTMLElement = HTMLDivElement>(
       wrapperRef.current,
     );
 
-    // Move mode
+    // Selection
     if (toolMode === toolModes.selection) {
-      const clickedNode = getElementOnClickedPosition(
-        clickPoint.x,
-        clickPoint.y,
+      selecting(
+        clickPoint,
         nodes,
+        group,
+        setSelectedNode,
+        setNodes,
+        setActionMode,
       );
-
-      // Click on a node
-      if (clickedNode) {
-        // If clicked on the line we're moving it
-        if (clickedNode.clickPosition === lineClickPositions.on) {
-          setActionMode(actions.moving);
-        }
-
-        // If clicked on near start or end we're resizing it
-        if (
-          clickedNode.clickPosition === lineClickPositions.start ||
-          clickedNode.clickPosition === lineClickPositions.end
-        ) {
-          setActionMode(actions.resizing);
-        }
-
-        // Calculating click point offset to the start point of the node
-        const offsetX = clickPoint.x - clickedNode.position.start.x;
-        const offsetY = clickPoint.y - clickedNode.position.start.y;
-
-        setSelectedNode({ ...clickedNode, offsetX, offsetY });
-
-        setNodes((nodes) =>
-          nodes.map((node) => {
-            // Set the current pointed node as selected
-            if (node.id === clickedNode.id) {
-              node = {
-                ...node,
-                selected: true,
-              };
-            }
-            // Toogle select on nodes if they were selected before
-            if (node.id !== clickedNode.id && node.selected) {
-              node = {
-                ...node,
-                selected: false,
-              };
-            }
-            return node;
-          }),
-        );
-      }
-
-      // Click on empty space
-      if (!clickedNode) {
-        setNodes((nodes) =>
-          nodes.map((node) => {
-            if (node.selected) {
-              node = {
-                ...node,
-                selected: false,
-              };
-            }
-            return node;
-          }),
-        );
-      }
     }
 
-    // Draw line mode
+    // Draw line
     if (toolMode === toolModes.line) {
       setActionMode(actions.drawing);
-
       const line = createLine(clickPoint, clickPoint, SVGContainer);
-
       setNodes((nodes) => nodes.concat(line));
     }
   };
@@ -153,104 +120,51 @@ const useSVG = <T extends HTMLElement = HTMLDivElement>(
         movingPoint.y,
         nodes,
       );
-
       if (movedOverNode) movedOverNode.element.css({ cursor: "move" });
     }
 
     if (actionMode === actions.none) return;
 
-    // Moving action
-    if (actionMode === actions.moving && selectedNode) {
-      const width = selectedNode.position.end.x - selectedNode.position.start.x;
-      const height =
-        selectedNode.position.end.y - selectedNode.position.start.y;
+    const isMoving = actionMode === actions.moving;
+    const isResizing = actionMode === actions.resizing;
+    const isDrawing = actionMode === actions.drawing;
 
-      // We reduce mouse click point offset to the start point because
-      // if we click on a distanced point to the start point
-      // we don't want a jump to happen in the position of the line
-      const newStartPoint = {
-        x: movingPoint.x - selectedNode.offsetX,
-        y: movingPoint.y - selectedNode.offsetY,
-      };
-
-      const newEndPoint = {
-        x: newStartPoint.x + width,
-        y: newStartPoint.y + height,
-      };
-
-      setNodes((nodes) =>
-        nodes.map((node) => {
-          if (node.id === selectedNode.id) {
-            node = {
-              ...node,
-              element: node.element.plot([
-                newStartPoint.x,
-                newStartPoint.y,
-                newEndPoint.x,
-                newEndPoint.y,
-              ]),
-              position: {
-                ...node.position,
-                start: newStartPoint,
-                end: newEndPoint,
-              },
-            };
-          }
-          return node;
-        }),
-      );
+    //***** Drawing action */
+    if (isDrawing) {
+      drawing(movingPoint, nodes, SVGContainer, setNodes);
     }
 
-    // Drawing action
+    //***** Moving action */
+    if (isMoving && selectedNode) {
+      moving(movingPoint, selectedNode, setNodes);
+    }
+
+    //***** Resizing action */
+    if (isResizing && selectedNode) {
+      resizing(movingPoint, selectedNode, setNodes);
+    }
+  };
+
+  const handleMouseUp = () => {
     if (actionMode === actions.drawing) {
       const latestIndex = nodes.length - 1;
       const latestElm = nodes.at(latestIndex);
 
       if (latestElm) {
-        const updatedLine = createLine(
-          { x: latestElm.position.start.x, y: latestElm.position.start.y },
-          { x: movingPoint.x, y: movingPoint.y },
-          SVGContainer,
-        );
+        setSelectedNode({
+          ...latestElm,
+          offsetX: 0,
+          offsetY: 0,
+          clickPosition: "end",
+        });
 
-        setNodes((nodes) =>
-          nodes.map((node, idx) => {
-            if (idx === latestIndex) node = updatedLine;
-            return node;
-          }),
-        );
-
-        // Removing previous instances of line added by SVGContainer => There may probably be better way to do this
-        // Instead of SVGContainer adding all the lines in createLine directly to the DOM, it gathers them in a single wrapper
-        // And After every update in elements array, it gives the task to the useEffect
-        updatedLine.element.remove();
-      }
-    }
-
-    if (actionMode === actions.resizing && selectedNode) {
-      const coordinates = resizeLineCoordinates(
-        movingPoint,
-        selectedNode.clickPosition,
-        selectedNode.position,
-      );
-
-      if (coordinates) {
+        // Unselected previous nodes and select the latest drawing node
         setNodes((nodes) =>
           nodes.map((node) => {
-            if (node.id === selectedNode.id) {
+            if (node.selected && node.id !== latestElm.id) {
               node = {
                 ...node,
-                element: node.element.plot(
-                  coordinates.start.x,
-                  coordinates.start.y,
-                  coordinates.end.x,
-                  coordinates.end.y,
-                ),
-                position: {
-                  ...node.position,
-                  start: coordinates.start,
-                  end: coordinates.end,
-                },
+                selected: false,
               };
             }
             return node;
@@ -258,16 +172,12 @@ const useSVG = <T extends HTMLElement = HTMLDivElement>(
         );
       }
     }
-  };
 
-  const handleMouseUp = () => {
     if (actionMode !== actions.none) setActionMode(actions.none);
   };
 
   return {
-    actionMode,
     wrapperRef,
-    selectedNode,
     SVGContainer,
     handleMouseUp,
     handleMouseMove,

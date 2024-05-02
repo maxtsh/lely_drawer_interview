@@ -1,8 +1,7 @@
 import { cn } from "@nextui-org/react";
 import useSVG from "./useSVG";
-import Background from "./components/Background";
-import { actions } from "./SVGDrawer.constants";
 import Toolbar from "./components/Toolbar";
+import Background from "./components/Background";
 import Information from "./components/Information";
 import type { Props } from "./SVGDrawer.types";
 
@@ -11,14 +10,8 @@ const SVGDrawer: React.FC<Props> = ({
   height = "100%",
   onLoad,
 }) => {
-  const {
-    actionMode,
-    wrapperRef,
-    selectedNode,
-    handleMouseUp,
-    handleMouseDown,
-    handleMouseMove,
-  } = useSVG(onLoad);
+  const { wrapperRef, handleMouseUp, handleMouseDown, handleMouseMove } =
+    useSVG(onLoad);
 
   const classNames = {
     container: cn(
@@ -31,12 +24,13 @@ const SVGDrawer: React.FC<Props> = ({
   return (
     <div
       ref={wrapperRef}
+      aria-label="Canvas"
       className={classNames.container}
       onMouseUp={handleMouseUp}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}>
       <Toolbar />
-      {actionMode === actions.moving && selectedNode && <Information />}
+      <Information />
       <Background />
     </div>
   );

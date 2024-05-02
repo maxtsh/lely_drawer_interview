@@ -22,20 +22,21 @@ export type LineClickPositionType = keyof typeof lineClickPositions | null;
 
 export type LineNode = {
   id: string;
+  element: Line;
   selected: boolean;
   category: typeof shapes.line;
+  connections: { start: Point2D | null; end: Point2D | null }; // TODO: For connecting to other lines
   position: {
     start: Point2D;
     end: Point2D;
   };
-  element: Line;
 };
 
 // Node Types, ex: Line, Rectangle etc...
 export type NodeType = LineNode;
 
 export type SelectedNode = {
-  offsetX: number;
   offsetY: number;
+  offsetX: number;
   clickPosition: LineClickPositionType;
 } & NodeType;
